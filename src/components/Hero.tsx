@@ -49,21 +49,6 @@ const Hero = () => {
               Join Us
             </Button>
           </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12">
-            {[
-              { number: "500+", label: "Members" },
-              { number: "50+", label: "Events" },
-              { number: "10+", label: "Projects" },
-              { number: "5+", label: "Years" },
-            ].map((stat, index) => (
-              <div key={index} className="glass p-4 rounded-xl hover-lift">
-                <div className="text-3xl font-bold gradient-text">{stat.number}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 
