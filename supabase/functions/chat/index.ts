@@ -21,18 +21,12 @@ serve(async (req) => {
     console.log('Received chat request with', messages?.length || 0, 'messages');
 
     // Convert messages to Gemini format
-    const systemPrompt = 'You are a helpful assistant for a club. Answer questions about the club, events, membership, and how to get involved. Be friendly, concise, and helpful.';
+    const systemPrompt = 'You are a helpful and friendly AI assistant for a club. You can answer questions about the club, events, membership, activities, and how to get involved. Provide clear, accurate, and helpful responses. If you don\'t know something specific about the club, be honest about it and offer to help in other ways.';
     
     const geminiMessages = messages.map((msg: any) => ({
       role: msg.role === 'assistant' ? 'model' : 'user',
       parts: [{ text: msg.content }]
     }));
-
-    // Add system instruction as first user message
-    geminiMessages.unshift({
-      role: 'user',
-      parts: [{ text: systemPrompt }]
-    });
 
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`,
@@ -43,10 +37,33 @@ serve(async (req) => {
         },
         body: JSON.stringify({
           contents: geminiMessages,
+          systemInstruction: {
+            parts: [{ text: systemPrompt }]
+          },
           generationConfig: {
-            temperature: 0.7,
-            maxOutputTokens: 1024,
-          }
+            temperature: 0.9,
+            topP: 0.95,
+            topK: 40,
+            maxOutputTokens: 2048,
+          },
+          safetySettings: [
+            {
+              category: "HARM_CATEGORY_HARASSMENT",
+              threshold: "BLOCK_MEDIUM_AND_ABOVE"
+            },
+            {
+              category: "HARM_CATEGORY_HATE_SPEECH",
+              threshold: "BLOCK_MEDIUM_AND_ABOVE"
+            },
+            {
+              category: "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+              threshold: "BLOCK_MEDIUM_AND_ABOVE"
+            },
+            {
+              category: "HARM_CATEGORY_DANGEROUS_CONTENT",
+              threshold: "BLOCK_MEDIUM_AND_ABOVE"
+            }
+          ]
         }),
       }
     );
