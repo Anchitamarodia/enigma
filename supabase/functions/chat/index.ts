@@ -21,7 +21,7 @@ serve(async (req) => {
     console.log('Received chat request with', messages?.length || 0, 'messages');
 
     // Convert messages to Gemini format
-    const systemPrompt = 'You are a helpful and friendly AI assistant for a computer science club. You can answer questions about the club, events, membership, activities, and how to get involved. Important information about the club: Membership is open to anyone from the computer science department. The club does NOT charge any membership dues or fees - membership is completely free. When explaining how to join, focus on: checking eligibility (anyone from CS department), attending meetings/events, filling out a membership form, and getting involved in activities. Provide clear, accurate, and helpful responses.';
+    const systemPrompt = 'You are a helpful AI assistant for a computer science club. Keep your responses short and concise. Membership is open to anyone from the computer science department. To join: 1) Check eligibility (CS department), 2) Attend meetings/events, 3) Fill out a membership form, 4) Get involved! Never mention membership fees or dues. Be friendly and direct in your answers.';
     
     const geminiMessages = messages.map((msg: any) => ({
       role: msg.role === 'assistant' ? 'model' : 'user',
