@@ -1,4 +1,5 @@
 import { Linkedin, Github, Mail } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const Team = () => {
   const teamMembers = [
@@ -6,37 +7,37 @@ const Team = () => {
       name: "Alex Rivera",
       role: "President",
       description: "Leading the club's strategic vision and initiatives",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
     },
     {
       name: "Sarah Chen",
       role: "Vice President",
       description: "Managing operations and community engagement",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sarah",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
     },
     {
       name: "Marcus Johnson",
       role: "Technical Lead",
       description: "Overseeing technical projects and workshops",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Marcus",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
     },
     {
       name: "Emily Zhang",
       role: "Events Coordinator",
       description: "Planning and executing club events and competitions",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Emily",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
     },
     {
       name: "David Kumar",
       role: "Marketing Head",
       description: "Managing club branding and outreach initiatives",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=David",
+      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
     },
     {
       name: "Lisa Anderson",
       role: "Finance Officer",
       description: "Handling budgets and financial planning",
-      image: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lisa",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
     },
   ];
 
@@ -64,12 +65,17 @@ const Team = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative mb-6">
-                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary transition-colors">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300">
+                  <Avatar className="w-full h-full">
+                    <AvatarImage 
+                      src={member.image} 
+                      alt={member.name}
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                    />
+                    <AvatarFallback className="text-2xl font-bold bg-primary/10">
+                      {member.name.split(' ').map(n => n[0]).join('')}
+                    </AvatarFallback>
+                  </Avatar>
                 </div>
                 <div className="absolute bottom-0 right-1/2 transform translate-x-1/2 translate-y-2">
                   <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
