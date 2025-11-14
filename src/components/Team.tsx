@@ -65,19 +65,19 @@ const Team = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative mb-6">
-                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300">
-                  <Avatar className="w-full h-full">
+                <div className="w-48 h-64 mx-auto rounded-2xl overflow-hidden border-4 border-primary/20 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300">
+                  <Avatar className="w-full h-full rounded-none">
                     <AvatarImage 
                       src={member.image} 
                       alt={member.name}
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
                     />
-                    <AvatarFallback className="text-2xl font-bold bg-primary/10">
+                    <AvatarFallback className="text-2xl font-bold bg-primary/10 rounded-none">
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </AvatarFallback>
                   </Avatar>
                 </div>
-                <div className="absolute bottom-0 right-1/2 transform translate-x-1/2 translate-y-2">
+                <div className="absolute -bottom-6 right-1/2 transform translate-x-1/2">
                   <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <a
                       href="#"
