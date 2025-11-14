@@ -65,7 +65,7 @@ const Team = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative mb-4">
-                <div className="w-full h-56 rounded-2xl overflow-hidden border-4 border-primary/20 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300">
+                <div className="w-40 h-56 mx-auto rounded-2xl overflow-hidden border-4 border-primary/20 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300">
                   <Avatar className="w-full h-full rounded-none">
                     <AvatarImage 
                       src={member.image} 
