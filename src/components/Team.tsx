@@ -57,15 +57,15 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="glass p-6 rounded-2xl hover-lift group cursor-pointer"
+              className="glass p-4 rounded-2xl hover-lift group cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="relative mb-6">
-                <div className="w-48 h-64 mx-auto rounded-2xl overflow-hidden border-4 border-primary/20 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300">
+              <div className="relative mb-4">
+                <div className="w-full h-56 rounded-2xl overflow-hidden border-4 border-primary/20 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300">
                   <Avatar className="w-full h-full rounded-none">
                     <AvatarImage 
                       src={member.image} 
@@ -102,9 +102,9 @@ const Team = () => {
               </div>
 
               <div className="text-center">
-                <h3 className="text-xl font-bold mb-1">{member.name}</h3>
-                <p className="text-primary font-semibold mb-3">{member.role}</p>
-                <p className="text-sm text-muted-foreground">{member.description}</p>
+                <h3 className="text-lg font-bold mb-1">{member.name}</h3>
+                <p className="text-primary font-semibold mb-2">{member.role}</p>
+                <p className="text-sm text-muted-foreground leading-snug">{member.description}</p>
               </div>
             </div>
           ))}
