@@ -57,14 +57,14 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="glass p-4 rounded-2xl hover-lift group cursor-pointer"
+              className="glass p-3 rounded-2xl hover-lift group cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="relative mb-4">
+              <div className="relative mb-3">
                 <div className="w-40 h-56 mx-auto rounded-2xl overflow-hidden border-4 border-primary/20 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300">
                   <Avatar className="w-full h-full rounded-none">
                     <AvatarImage 
