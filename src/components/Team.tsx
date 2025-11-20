@@ -8,36 +8,54 @@ const Team = () => {
       role: "President",
       description: "Leading the club's strategic vision and initiatives",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
+      linkedin: "",
+      github: "",
+      email: "",
     },
     {
       name: "Sarah Chen",
       role: "Vice President",
       description: "Managing operations and community engagement",
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+      linkedin: "",
+      github: "",
+      email: "",
     },
     {
       name: "Marcus Johnson",
       role: "Technical Lead",
       description: "Overseeing technical projects and workshops",
       image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop",
+      linkedin: "",
+      github: "",
+      email: "",
     },
     {
       name: "Emily Zhang",
       role: "Events Coordinator",
       description: "Planning and executing club events and competitions",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
+      linkedin: "",
+      github: "",
+      email: "",
     },
     {
       name: "David Kumar",
       role: "Marketing Head",
       description: "Managing club branding and outreach initiatives",
       image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
+      linkedin: "",
+      github: "",
+      email: "",
     },
     {
       name: "Lisa Anderson",
       role: "Finance Officer",
       description: "Handling budgets and financial planning",
       image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
+      linkedin: "",
+      github: "",
+      email: "",
     },
   ];
 
@@ -79,24 +97,37 @@ const Team = () => {
                 </div>
                 <div className="absolute -bottom-6 right-1/2 transform translate-x-1/2">
                   <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <a
-                      href="#"
-                      className="p-2 bg-primary rounded-full hover:scale-110 transition-transform"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                    <a
-                      href="#"
-                      className="p-2 bg-secondary rounded-full hover:scale-110 transition-transform"
-                    >
-                      <Github className="w-4 h-4 text-background" />
-                    </a>
-                    <a
-                      href="#"
-                      className="p-2 bg-accent rounded-full hover:scale-110 transition-transform"
-                    >
-                      <Mail className="w-4 h-4" />
-                    </a>
+                    {member.linkedin && (
+                      <a
+                        href={member.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-primary rounded-full hover:scale-110 transition-transform"
+                        aria-label={`${member.name}'s LinkedIn`}
+                      >
+                        <Linkedin className="w-4 h-4" />
+                      </a>
+                    )}
+                    {member.github && (
+                      <a
+                        href={member.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-secondary rounded-full hover:scale-110 transition-transform"
+                        aria-label={`${member.name}'s GitHub`}
+                      >
+                        <Github className="w-4 h-4 text-background" />
+                      </a>
+                    )}
+                    {member.email && (
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="p-2 bg-accent rounded-full hover:scale-110 transition-transform"
+                        aria-label={`Email ${member.name}`}
+                      >
+                        <Mail className="w-4 h-4" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
