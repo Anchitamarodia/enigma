@@ -10,7 +10,7 @@ const FAQ = () => {
     {
       question: "Who can join ENIGMA?",
       answer:
-        "ENIGMA is open to all students regardless of their major or technical background. We welcome anyone passionate about technology, innovation, and learning.",
+        "ENIGMA is open to all students of CSE department. With us be passionate about technology, innovation, and learning.",
     },
     {
       question: "Do I need programming experience to join?",
