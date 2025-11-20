@@ -48,7 +48,7 @@ const Events = () => {
                 <img 
                   src={upcomingEvent.image} 
                   alt={upcomingEvent.title}
-                  className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg"
+                  className="w-full h-80 md:h-[28rem] object-cover rounded-2xl shadow-lg"
                 />
               </div>
 
@@ -151,7 +151,7 @@ const Events = () => {
                 <img 
                   src={pastEvent.image} 
                   alt={pastEvent.title}
-                  className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg"
+                  className="w-full h-80 md:h-[28rem] object-cover rounded-2xl shadow-lg"
                 />
               </div>
             </div>
