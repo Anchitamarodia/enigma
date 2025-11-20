@@ -1,4 +1,5 @@
 import { Github, Linkedin, Twitter, Instagram } from "lucide-react";
+import enigmaLogo from "@/assets/enigma-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,8 +28,8 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-xl font-bold font-outfit">E</span>
+              <div className="w-10 h-10 rounded-lg overflow-hidden">
+                <img src={enigmaLogo} alt="ENIGMA Logo" className="w-full h-full object-cover" />
               </div>
               <span className="text-2xl font-bold font-outfit gradient-text">ENIGMA</span>
             </div>
