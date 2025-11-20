@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import enigmaLogo from "@/assets/enigma-logo.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,8 +36,8 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#home" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-xl font-bold font-outfit">E</span>
+            <div className="w-10 h-10 rounded-lg overflow-hidden">
+              <img src={enigmaLogo} alt="ENIGMA Logo" className="w-full h-full object-cover" />
             </div>
             <span className="text-xl font-bold font-outfit gradient-text">ENIGMA</span>
           </a>
