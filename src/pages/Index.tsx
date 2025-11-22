@@ -4,7 +4,6 @@ import About from "@/components/About";
 import Events from "@/components/Events";
 import Team from "@/components/Team";
 import Vision from "@/components/Vision";
-import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
@@ -18,7 +17,7 @@ const Index = () => {
       <Events />
       <Team />
       <Vision />
-      <FAQ />
+     
       <Contact />
       <Footer />
       <ChatBot />

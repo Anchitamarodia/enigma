@@ -1,19 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, ExternalLink } from "lucide-react";
-import inceptrixImage from "@/assets/inceptrix-2025.jpg";
+import event_2025 from "@/assets/event_2025.jpg";
 import raceForRolesImage from "@/assets/race-for-roles-2025.jpg";
 
 const Events = () => {
   // MODIFIED: Content updated to reflect a past event
   const upcomingEvent = {
-    title: "INCEPTRIX 2025",
-    description: "INCEPTRIX 2025 was Enigma's flagship event aimed at providing a platform for students to showcase their talent, creativity, and skills in technology and innovation. The event included technical workshops, coding competitions, and project exhibitions.",
-    date: "March 15-17, 2025",
-    location: "Main Campus Auditorium",
-    participants: "200+ Attended",
-    status: "past",
-    image: inceptrixImage,
+    title: "INNOVATION DUEL 2025",
+    description:
+      "🚀 ENIGMA Presents INNOVATION DUEL 2025 🚀\n\n" +
+      "Do you notice problems around campus that need fixing? Here’s your chance to turn those problems into powerful, real solutions!\n\n" +
+      "🌟 Theme: Solve Your Campus Challenges\n" +
+      "Build a prototype, innovate smartly, and show how your idea can improve everyday campus life.\n\n" +
+      "💡 What to Expect:\n" +
+      "• Hands-on building\n" +
+      "• Mentoring from seniors & faculty\n" +
+      "• Project expo + judging\n" +
+      "• Certificates\n\n" +
+      "If you’ve ever thought, “This could be better on campus,” then this is your moment. Join us and innovate for the place you live, learn, and grow!\n\n" +
+      "~ TEAM ENIGMA",
+    date: "27/11/2025",
+    location: "LH 113 & 127",
+    participants: "Max 3 members per team",
+    status: "upcoming",
+    link: "https://forms.gle/d22a83ReEPQnkx1E9",
+    prizePool: "₹9,000 + Certificates",
+    time: "9:00 AM – 3:30 PM",
+    image: event_2025, // replace with your actual image import
   };
+
 
   const pastEvent = {
     title: "Race for Roles 2025",
@@ -45,11 +60,11 @@ const Events = () => {
           {/* MODIFIED: Added past event visual classes */}
           <div className="glass p-8 rounded-3xl hover-lift opacity-90 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 overflow-hidden">
             <div className="grid md:grid-cols-12 gap-8 items-center">
-              
+
               {/* Image - Still Order 2 on md screens, taking 7/12 width */}
               <div className="order-2 md:order-1 md:col-span-7">
-                <img 
-                  src={upcomingEvent.image} 
+                <img
+                  src={upcomingEvent.image}
                   alt={upcomingEvent.title}
                   className="w-full h-[32rem] md:h-[42rem] object-cover rounded-2xl shadow-lg"
                 />
@@ -60,7 +75,7 @@ const Events = () => {
                 <div className="flex items-center gap-3 mb-6">
                   {/* MODIFIED: Status tag styling updated */}
                   <span className="px-4 py-1 bg-muted rounded-full text-sm font-semibold">
-                    Past Event
+                    Upcoming Event
                   </span>
                   {/* MODIFIED: Icon color updated */}
                   <Calendar className="w-5 h-5 text-muted-foreground" />
@@ -154,8 +169,8 @@ const Events = () => {
 
               {/* Image - Still col-span-7 */}
               <div className="md:col-span-7">
-                <img 
-                  src={pastEvent.image} 
+                <img
+                  src={pastEvent.image}
                   alt={pastEvent.title}
                   className="w-full h-[32rem] md:h-[42rem] object-cover rounded-2xl shadow-lg"
                 />
