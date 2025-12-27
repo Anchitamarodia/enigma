@@ -22,7 +22,7 @@ const Events = () => {
     date: "27/11/2025",
     location: "LH 113 & 127",
     participants: "Max 3 members per team",
-    status: "upcoming",
+    status: "Past Event",
     link: "https://forms.gle/d22a83ReEPQnkx1E9",
     prizePool: "₹9,000 + Certificates",
     time: "9:00 AM – 3:30 PM",

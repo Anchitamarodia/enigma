@@ -1,169 +1,157 @@
-import { useState, useRef, useEffect } from "react";
-import { Bot, X, Send } from "lucide-react";
+import { useState } from "react";
+// Changed Bot to HelpCircle
+import { HelpCircle, X, MessageSquare, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const faqs = [
+  {
+    question: "What is ENIGMA?",
+    answer: "ENIGMA is a student-led club at Jain University (FET) dedicated to fostering innovation, collaboration, and technical excellence through workshops, competitions, and projects."
+  },
+  {
+    question: "How can I join the club?",   
+    answer: "Registrations for our flagship event 'Race for Roles' will be starting soon! To ensure you don't miss out, follow us on Instagram and stay updated for the official registration announcement and membership links."
+  },
+  {
+    question: "What kind of events do you host?",
+    answer: "We host technical hackathons (like Innovation Duel), hands-on coding sessions, and creative design challenges."
+  },
+  {
+    question: "Where is the club located?",
+    answer: "We are primarily active at the Faculty of Engineering and Technology (FET) campus, Jain University."
+  },
+  {
+    question: "Who can I contact for collaboration?",
+    answer: "You can reach out to our Lead, Yamuna Sharma, or email us directly at enigmaclub5@gmail.com for any queries or partnership opportunities."
+  }
+];
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    {
-      role: "assistant",
-      content: "Hi! I'm the club assistant. How can I help you today?",
-    },
-  ]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages]);
-
-  const sendMessage = async () => {
-    if (!input.trim() || isLoading) return;
-
-    const userMessage = { role: "user", content: input };
-    setMessages((prev) => [...prev, userMessage]);
-    const currentInput = input;
-    setInput("");
-    setIsLoading(true);
-
-    try {
-      const conversationHistory = messages
-        .map((m) => `${m.role === "user" ? "User" : "Assistant"}: ${m.content}`)
-        .join("\n");
-
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          input: currentInput, 
-          conversationHistory 
-        }),
-      });
-
-      if (!response.ok) {
-        if (response.status === 429) {
-          throw new Error("API rate limit exceeded. Please wait a moment and try again.");
-        }
-        const errText = await response.text().catch(() => "");
-        throw new Error(`API error: ${response.status} ${errText}`);
-      }
-
-      const data = await response.json();
-      const assistantText = data?.message;
-
-      if (assistantText) {
-        const assistantMessage = { role: "assistant", content: assistantText };
-        setMessages((prev) => [...prev, assistantMessage]);
-      } else {
-        throw new Error("Invalid response format from server");
-      }
-    } catch (error) {
-      console.error("Chat error:", error);
-      let errorMessage = "Sorry, I encountered an error. Please try again.";
-      
-      if (error instanceof Error) {
-        if (error.message.includes("rate limit")) {
-          errorMessage = error.message;
-        } else if (error.message.includes("fetch")) {
-          errorMessage = "Network error. Please check your connection.";
-        }
-      }
-
-      const assistantMessage = { role: "assistant", content: errorMessage };
-      setMessages((prev) => [...prev, assistantMessage]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-  };
+  const [activeItem, setActiveItem] = useState<string | undefined>(undefined);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-50 flex items-end justify-end p-4">
-      {/* Floating Button */}
-      <button
+    <div className="fixed inset-0 pointer-events-none z-[9999]">
+      {/* Floating Toggle Button - Icon changed to HelpCircle */}
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="pointer-events-auto fixed bottom-6 right-6 h-14 w-14 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg z-50 flex items-center justify-center transition-all transform hover:scale-110"
-        aria-label="Toggle chat"
+        className="pointer-events-auto fixed bottom-6 right-6 h-16 w-16 rounded-full bg-[#2563eb] text-white shadow-[0_10px_25px_-5px_rgba(37,99,235,0.4)] z-[9999] flex items-center justify-center transition-all"
       >
-        {isOpen ? <X size={24} /> : <Bot size={24} />}
-      </button>
+        <AnimatePresence mode="wait">
+          {isOpen ? (
+            <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+              <X className="h-8 w-8" />
+            </motion.div>
+          ) : (
+            <motion.div key="open" initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0, opacity: 0 }}>
+              {/* This is the Help/Question icon for the floating button */}
+              <HelpCircle className="h-9 w-9" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.button>
 
-      {/* Chat Window */}
-      {isOpen && (
-        <div className="pointer-events-auto fixed bottom-24 right-6 w-96 h-[500px] bg-white rounded-lg shadow-2xl flex flex-col z-50 border border-gray-200">
-          {/* Header */}
-          <div className="bg-blue-600 text-white p-4 rounded-t-lg">
-            <h3 className="font-bold text-lg">Club Assistant</h3>
-            <p className="text-sm text-blue-100">Ask me anything about our club!</p>
-          </div>
-
-          {/* Messages */}
-          <div
-            ref={scrollRef}
-            className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
+      {/* FAQ Window */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.95, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: 50, scale: 0.95, filter: "blur(10px)" }}
+            className="pointer-events-auto fixed bottom-28 right-6 w-[360px] md:w-[420px] max-h-[600px] bg-white/90 backdrop-blur-xl rounded-[28px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] flex flex-col z-[9999] overflow-hidden border border-white/20"
           >
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${
-                  message.role === "user" ? "justify-end" : "justify-start"
-                }`}
-              >
-                <div
-                  className={`max-w-[80%] p-3 rounded-lg ${
-                    message.role === "user"
-                      ? "bg-blue-600 text-white"
-                      : "bg-white text-gray-800 border border-gray-200"
-                  }`}
-                >
-                  {message.content}
+            {/* Header */}
+            <div className="p-7 bg-[#2563eb] text-white relative overflow-hidden">
+              <div className="absolute top-[-20%] left-[-10%] w-40 h-40 bg-white/10 rounded-full blur-2xl" />
+              
+              <div className="flex items-center gap-3 relative z-10">
+                <div className="p-2.5 bg-white/20 rounded-xl border border-white/30 shadow-inner">
+                  <MessageSquare className="h-6 w-6" />
                 </div>
-              </div>
-            ))}
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-white text-gray-800 p-3 rounded-lg border border-gray-200">
-                  <div className="flex space-x-2">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h3 className="font-bold text-2xl tracking-tight">Club Assistant</h3>
+                    <Sparkles className="h-5 w-5 text-blue-200 animate-pulse" />
                   </div>
+                  <p className="text-sm text-blue-100/90 font-medium">Quick answers to common questions</p>
                 </div>
               </div>
-            )}
-          </div>
-
-          {/* Input */}
-          <div className="p-4 border-t border-gray-200 bg-white rounded-b-lg">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Type your message..."
-                disabled={isLoading}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
-              />
-              <button
-                onClick={sendMessage}
-                disabled={isLoading || !input.trim()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
-              >
-                <Send size={20} />
-              </button>
             </div>
-          </div>
-        </div>
-      )}
+
+            {/* Content Area */}
+            <div className="flex-1 p-5 overflow-y-auto bg-[#f8fafc] custom-scrollbar">
+              <Accordion 
+                type="single" 
+                collapsible 
+                className="w-full space-y-4"
+                onValueChange={(value) => setActiveItem(value)}
+              >
+                {faqs.map((faq, index) => {
+                  const itemValue = `item-${index}`;
+                  const isActive = activeItem === itemValue;
+                  
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -15 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.08 }}
+                    >
+                      <AccordionItem
+                        value={itemValue}
+                        className="bg-white border-none rounded-[20px] px-2 shadow-[0_4px_10px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_24px_rgba(37,99,235,0.08)] transition-all duration-300"
+                      >
+                        <AccordionTrigger className={`flex gap-4 px-3 text-[15px] font-bold text-left hover:no-underline py-5 transition-all group ${isActive ? 'text-[#2563eb]' : 'text-[#1e293b]'}`}>
+                          <div className="flex items-center gap-4 flex-1">
+                            <motion.div 
+                              animate={{ scale: isActive ? 1.1 : 1 }}
+                              className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-black transition-colors ${isActive ? 'bg-[#2563eb] text-white shadow-lg' : 'bg-[#eff6ff] text-[#2563eb]'}`}
+                            >
+                              {index + 1}
+                            </motion.div>
+                            <span className="flex-1 leading-snug">{faq.question}</span>
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="text-[14px] text-slate-500 leading-relaxed px-14 pb-6 pt-0 font-medium">
+                          {faq.answer}
+                        </AccordionContent>
+                      </AccordionItem>
+                    </motion.div>
+                  );
+                })}
+              </Accordion>
+            </div>
+
+            {/* Footer */}
+            <div className="p-5 bg-white border-t border-gray-100 text-center">
+              <p className="text-[14px] text-gray-500 font-medium">
+                Still have questions? Use the <span className="text-[#2563eb] font-bold cursor-pointer hover:underline decoration-2">Contact section</span> below.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <style>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #cbd5e1;
+          border-radius: 10px;
+        }
+      `}</style>
     </div>
   );
 };
