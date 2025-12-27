@@ -4,31 +4,26 @@ import event_2025 from "@/assets/event_2025.jpg";
 import raceForRolesImage from "@/assets/race-for-roles-2025.jpg";
 
 const Events = () => {
-  // MODIFIED: Content updated to reflect a past event
-  const upcomingEvent = {
+  // Updated to reflect a past event
+  const innovationDuel = {
     title: "INNOVATION DUEL 2025",
     description:
-      "🚀 ENIGMA Presents INNOVATION DUEL 2025 🚀\n\n" +
-      "Do you notice problems around campus that need fixing? Here’s your chance to turn those problems into powerful, real solutions!\n\n" +
-      "🌟 Theme: Solve Your Campus Challenges\n" +
-      "Build a prototype, innovate smartly, and show how your idea can improve everyday campus life.\n\n" +
-      "💡 What to Expect:\n" +
-      "• Hands-on building\n" +
-      "• Mentoring from seniors & faculty\n" +
-      "• Project expo + judging\n" +
-      "• Certificates\n\n" +
-      "If you’ve ever thought, “This could be better on campus,” then this is your moment. Join us and innovate for the place you live, learn, and grow!\n\n" +
+      "🚀 ENIGMA Presented INNOVATION DUEL 2025 🚀\n\n" +
+      "Students identified problems around campus and turned them into powerful, real solutions. This event showcased incredible prototypes and smart innovations aimed at improving everyday campus life.\n\n" +
+      "💡 Outcomes:\n" +
+      "• Hands-on prototype building\n" +
+      "• Direct mentoring from industry experts\n" +
+      "• Successful project expo and judging\n" +
+      "• Recognition and Certificates awarded\n\n" +
       "~ TEAM ENIGMA",
     date: "27/11/2025",
     location: "LH 113 & 127",
     participants: "Max 3 members per team",
-    status: "Past Event",
-    link: "https://forms.gle/d22a83ReEPQnkx1E9",
+    status: "past",
     prizePool: "₹9,000 + Certificates",
     time: "9:00 AM – 3:30 PM",
-    image: event_2025, // replace with your actual image import
+    image: event_2025,
   };
-
 
   const pastEvent = {
     title: "Race for Roles 2025",
@@ -51,42 +46,39 @@ const Events = () => {
             Our <span className="gradient-text">Events</span>
           </h2>
           <p className="text-xl text-muted-foreground">
-            Join us for exciting events, workshops, and competitions
+            A look back at our journey of innovation and learning
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto space-y-12">
-          {/* INCEPTRIX 2025 - Now marked as a Past Event (Kept original formatting) */}
-          {/* MODIFIED: Added past event visual classes */}
+          {/* INNOVATION DUEL 2025 - Now Past Event */}
           <div className="glass p-8 rounded-3xl hover-lift opacity-90 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 overflow-hidden">
             <div className="grid md:grid-cols-12 gap-8 items-center">
-
-              {/* Image - Still Order 2 on md screens, taking 7/12 width */}
+              {/* Image - Order 2 on mobile, Order 1 on Desktop */}
               <div className="order-2 md:order-1 md:col-span-7">
                 <img
-                  src={upcomingEvent.image}
-                  alt={upcomingEvent.title}
+                  src={innovationDuel.image}
+                  alt={innovationDuel.title}
                   className="w-full h-[32rem] md:h-[42rem] object-cover rounded-2xl shadow-lg"
                 />
               </div>
 
-              {/* Content - Still Order 1 on md screens, taking 5/12 width */}
+              {/* Content - Order 1 on mobile, Order 2 on Desktop */}
               <div className="order-1 md:order-2 md:col-span-5">
                 <div className="flex items-center gap-3 mb-6">
-                  {/* MODIFIED: Status tag styling updated */}
-                  <span className="px-4 py-1 bg-muted rounded-full text-sm font-semibold">
-                    Upcoming Event
+                  {/* Updated Status Tag */}
+                  <span className="px-4 py-1 bg-muted rounded-full text-sm font-semibold text-muted-foreground">
+                    Past Event
                   </span>
-                  {/* MODIFIED: Icon color updated */}
                   <Calendar className="w-5 h-5 text-muted-foreground" />
                 </div>
 
                 <h3 className="text-3xl font-bold mb-4 font-outfit">
-                  {upcomingEvent.title}
+                  {innovationDuel.title}
                 </h3>
 
                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {upcomingEvent.description}
+                  {innovationDuel.description}
                 </p>
 
                 <div className="grid gap-3 mb-6">
@@ -94,41 +86,34 @@ const Events = () => {
                     <Calendar className="w-5 h-5 text-muted-foreground" />
                     <div>
                       <div className="text-sm text-muted-foreground">Date</div>
-                      <div className="font-semibold">{upcomingEvent.date}</div>
+                      <div className="font-semibold">{innovationDuel.date}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 glass p-3 rounded-xl">
                     <MapPin className="w-5 h-5 text-muted-foreground" />
                     <div>
                       <div className="text-sm text-muted-foreground">Location</div>
-                      <div className="font-semibold">{upcomingEvent.location}</div>
+                      <div className="font-semibold">{innovationDuel.location}</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 glass p-3 rounded-xl">
                     <Users className="w-5 h-5 text-muted-foreground" />
                     <div>
                       <div className="text-sm text-muted-foreground">Participants</div>
-                      <div className="font-semibold">{upcomingEvent.participants}</div>
+                      <div className="font-semibold">{innovationDuel.participants}</div>
                     </div>
                   </div>
                 </div>
-
-                {/* REMOVED: Register Now button to signify past event */}
-                {/* <Button variant="hero" size="lg" className="w-full md:w-auto">
-                  Register Now
-                  <ExternalLink className="w-4 h-4" />
-                </Button> */}
               </div>
             </div>
           </div>
 
-          {/* Past Event (Race for Roles 2025) - Kept as is */}
+          {/* Race for Roles 2025 - Past Event */}
           <div className="glass p-8 rounded-3xl hover-lift opacity-90 hover:opacity-100 transition-opacity grayscale hover:grayscale-0 overflow-hidden">
             <div className="grid md:grid-cols-12 gap-8 items-center">
-              {/* Content - Still col-span-5 */}
               <div className="md:col-span-5">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="px-4 py-1 bg-muted rounded-full text-sm font-semibold">
+                  <span className="px-4 py-1 bg-muted rounded-full text-sm font-semibold text-muted-foreground">
                     Past Event
                   </span>
                   <Calendar className="w-5 h-5 text-muted-foreground" />
@@ -167,7 +152,6 @@ const Events = () => {
                 </div>
               </div>
 
-              {/* Image - Still col-span-7 */}
               <div className="md:col-span-7">
                 <img
                   src={pastEvent.image}
