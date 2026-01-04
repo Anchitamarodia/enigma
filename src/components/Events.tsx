@@ -15,7 +15,8 @@ const Events = () => {
     "/events/p6.jpg",
   ];
 
-  // Content for each slide (description only on slide 0)
+
+  // Content for each (description only on slide 0)
   const slideContent = [
     {
       showDescription: true,
