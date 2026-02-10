@@ -1,14 +1,11 @@
 import { Linkedin, Github, Mail } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-// Assuming the image paths like "/leads/lead.jpeg" are relative to your public directory
-// or correctly handled by your build tool (like Vite/Next.js/etc.)
 
 const membersData = [
   {
     id: 1,
     name: "Yamuna Sharma D",
     role: "Lead",
-    // NOTE: Renamed 'bio' to 'description' for component compatibility
     description:
       "Always drawn to art and creativity, i love finding stories in colors, design and the little details that often go unnoticed ",
     image: "/leads/lead.jpeg",
@@ -16,6 +13,18 @@ const membersData = [
       email: "yamusharma529@gmail.com",
       linkedin: "http://linkedin.com/in/yamuna-sharma-192a2029b",
       github: "https://github.com/yamunasharma24",
+    },
+  },
+  {
+    id: 9,
+    name: "Kshitij Sharma",
+    role: "Co-Lead",
+    description: "A curious jack of all trades who loves learning, building, and exploring new skills across domains.",
+    image: "/leads/colead.jpg", 
+    social: {
+      email: "kshitijsharma.765@gmail.com", 
+      linkedin: "https://linkedin.com/in/kshitijjj", // Added https:// for better linking
+      github: "https://github.com/kshxiscool", 
     },
   },
   {
@@ -80,14 +89,25 @@ const membersData = [
       github: "https://github.com/",
     },
   },
+  {
+    id: 10,
+    name: "Sworaj Khadka",
+    role: "Social Media Lead",
+    description: "Crafting our digital presence and keeping the community engaged one post at a time.",
+    image: "/leads/social.jpg", 
+    social: {
+      email: "sworajkhadka21@gmail.com", 
+      linkedin: "https://www.linkedin.com/in/sworaj-khadka-071a20349", 
+      github: "https://github.com/SworajKhadka", 
+    },
+  },
 ];
 
-// Helper to structure the data to match the component's expected format
 const formatTeamData = (members: typeof membersData) => {
   return members.map((member) => ({
     name: member.name,
     role: member.role,
-    description: member.description, // Mapped from 'bio'
+    description: member.description,
     image: member.image,
     linkedin: member.social.linkedin,
     github: member.social.github,
@@ -121,12 +141,11 @@ const Team = () => {
               className="glass p-3 rounded-2xl hover-lift group cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              {/* MODIFIED: Increased margin-bottom to push text down and create space */}
               <div className="relative mb-10">
                 <div className="w-40 h-56 mx-auto rounded-2xl overflow-hidden border-4 border-primary/20 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300">
                   <Avatar className="w-full h-full rounded-none">
                     <AvatarImage
-                      src={member.image} // Uses the local path from your original data
+                      src={member.image}
                       alt={member.name}
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
                     />
@@ -135,7 +154,6 @@ const Team = () => {
                     </AvatarFallback>
                   </Avatar>
                 </div>
-                {/* MODIFIED: Adjusted negative bottom value to better center icons in the new space */}
                 <div className="absolute -bottom-4 right-1/2 transform translate-x-1/2">
                   <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     {member.linkedin && (
@@ -176,7 +194,7 @@ const Team = () => {
               <div className="text-center">
                 <h3 className="text-lg font-bold mb-1">{member.name}</h3>
                 <p className="text-primary font-semibold mb-2">{member.role}</p>
-                <p className="text-sm text-muted-foreground leading-snug">
+                <p className="text-sm text-muted-foreground leading-snug px-2">
                   {member.description}
                 </p>
               </div>
