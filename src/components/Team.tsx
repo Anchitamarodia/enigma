@@ -20,11 +20,11 @@ const membersData = [
     name: "Kshitij Sharma",
     role: "Co-Lead",
     description: "A curious jack of all trades who loves learning, building, and exploring new skills across domains.",
-    image: "/leads/colead.jpg", 
+    image: "/leads/colead.jpg",
     social: {
-      email: "kshitijsharma.765@gmail.com", 
+      email: "kshitijsharma.765@gmail.com",
       linkedin: "https://linkedin.com/in/kshitijjj", // Added https:// for better linking
-      github: "https://github.com/kshxiscool", 
+      github: "https://github.com/kshxiscool",
     },
   },
   {
@@ -94,11 +94,11 @@ const membersData = [
     name: "Sworaj Khadka",
     role: "Social Media Lead",
     description: "Crafting our digital presence and keeping the community engaged one post at a time.",
-    image: "/leads/social.jpg", 
+    image: "/leads/social.jpg",
     social: {
-      email: "sworajkhadka21@gmail.com", 
-      linkedin: "https://www.linkedin.com/in/sworaj-khadka-071a20349", 
-      github: "https://github.com/SworajKhadka", 
+      email: "sworajkhadka21@gmail.com",
+      linkedin: "https://www.linkedin.com/in/sworaj-khadka-071a20349",
+      github: "https://github.com/SworajKhadka",
     },
   },
 ];
@@ -119,82 +119,70 @@ const Team = () => {
   const teamMembers = formatTeamData(membersData);
 
   return (
-    <section id="team" className="py-24 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl opacity-20" />
-      <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-20" />
-
+    <section id="team" className="py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold font-outfit mb-4">
-            Meet Our <span className="gradient-text">Team</span>
-          </h2>
-          <p className="text-xl text-muted-foreground">
-            The passionate individuals driving ENIGMA forward
-          </p>
+
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-6xl md:text-8xl font-black font-poppins tracking-tighter leading-none mb-6">
+              THE <br />
+              <span className="text-primary italic">OPERATIVES.</span>
+            </h2>
+            <p className="text-muted-foreground text-xl max-w-md border-l-2 border-primary pl-6 font-code text-sm uppercase">
+              Core unit responsible for technical rebellion and deployment of innovative solutions.
+            </p>
+          </div>
+          <div className="text-right hidden md:block">
+            <span className="text-sm font-code text-primary opacity-50 uppercase tracking-widest">[ Unit.Roster_v1.0 ]</span>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/10 max-w-7xl mx-auto">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="glass p-3 rounded-2xl hover-lift group cursor-pointer"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="bg-background p-8 group relative overflow-hidden"
             >
-              <div className="relative mb-10">
-                <div className="w-40 h-56 mx-auto rounded-2xl overflow-hidden border-4 border-primary/20 group-hover:border-primary group-hover:shadow-[0_0_20px_rgba(var(--primary),0.5)] transition-all duration-300">
-                  <Avatar className="w-full h-full rounded-none">
-                    <AvatarImage
-                      src={member.image}
-                      alt={member.name}
-                      className="object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <AvatarFallback className="text-2xl font-bold bg-primary/10 rounded-none">
-                      {member.name.split(" ").map((n) => n[0]).join("")}
-                    </AvatarFallback>
-                  </Avatar>
+              <div className="absolute top-0 right-0 p-2 font-code text-[8px] text-white/20 select-none">
+                OP_{index + 101}
+              </div>
+
+              <div className="relative mb-8">
+                <div className="w-full aspect-[4/5] bg-white/5 overflow-hidden border border-white/10 group-hover:border-primary transition-colors">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
+                  />
                 </div>
-                <div className="absolute -bottom-4 right-1/2 transform translate-x-1/2">
-                  <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {member.linkedin && (
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 bg-primary rounded-full hover:scale-110 transition-transform"
-                        aria-label={`${member.name}'s LinkedIn`}
-                      >
-                        <Linkedin className="w-4 h-4" />
-                      </a>
-                    )}
-                    {member.github && (
-                      <a
-                        href={member.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 bg-secondary rounded-full hover:scale-110 transition-transform"
-                        aria-label={`${member.name}'s GitHub`}
-                      >
-                        <Github className="w-4 h-4 text-background" />
-                      </a>
-                    )}
-                    {member.email && (
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="p-2 bg-accent rounded-full hover:scale-110 transition-transform"
-                        aria-label={`Email ${member.name}`}
-                      >
-                        <Mail className="w-4 h-4" />
-                      </a>
-                    )}
-                  </div>
+
+                {/* Social Overlay */}
+                <div className="absolute bottom-4 left-4 flex gap-2 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  {member.linkedin && (
+                    <a href={member.linkedin} target="_blank" className="w-8 h-8 bg-primary text-black flex items-center justify-center hover:bg-white transition-colors">
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                  )}
+                  {member.github && (
+                    <a href={member.github} target="_blank" className="w-8 h-8 bg-white text-black flex items-center justify-center hover:bg-primary transition-colors">
+                      <Github className="w-4 h-4" />
+                    </a>
+                  )}
                 </div>
               </div>
 
-              <div className="text-center">
-                <h3 className="text-lg font-bold mb-1">{member.name}</h3>
-                <p className="text-primary font-semibold mb-2">{member.role}</p>
-                <p className="text-sm text-muted-foreground leading-snug px-2">
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-black font-poppins tracking-tight uppercase leading-none mb-2 group-hover:text-primary transition-colors">
+                    {member.name}
+                  </h3>
+                  <div className="inline-block bg-primary/10 text-primary font-code text-[10px] px-2 py-0.5 tracking-tighter uppercase">
+                    {member.role}
+                  </div>
+                </div>
+
+                <p className="text-muted-foreground font-code text-[11px] leading-relaxed opacity-60 line-clamp-3">
                   {member.description}
                 </p>
               </div>

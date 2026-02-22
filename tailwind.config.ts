@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -47,9 +48,9 @@ export default {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+        acid: {
+          DEFAULT: "#D5FF40",
+          foreground: "#080808",
         },
       },
       backgroundImage: {
@@ -59,33 +60,38 @@ export default {
         'gradient-glow': 'var(--gradient-glow)',
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "0px",
+        md: "0px",
+        sm: "0px",
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        jitter: {
+          "0%, 100%": { transform: "translate(0)" },
+          "10%": { transform: "translate(-2px, 2px)" },
+          "20%": { transform: "translate(-2px, -2px)" },
+          "30%": { transform: "translate(2px, 2px)" },
+          "40%": { transform: "translate(2px, -2px)" },
+          "50%": { transform: "translate(-1px, 1px)" },
+          "60%": { transform: "translate(1px, -1px)" },
+          "70%": { transform: "translate(-1px, -1px)" },
+          "80%": { transform: "translate(1px, 1px)" },
+          "90%": { transform: "translate(0)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        jitter: "jitter 0.3s cubic-bezier(.25, .46, .45, .94) both",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

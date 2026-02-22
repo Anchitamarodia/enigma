@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Moon, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
-import enigmaLogo from "@/assets/enigma-logo.png";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import enigmaLogo from "@/assets/Logo_Updated.png";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [isLogoOpen, setIsLogoOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,96 +17,129 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Events", href: "#events" },
-    { name: "Team", href: "#team" },
-    { name: "Vision", href: "#vision" },
-    { name: "Contact", href: "#contact" },
+    { name: "HOME.EXE", href: "#home" },
+    { name: "ABOUT.LOG", href: "#about" },
+    { name: "MISSIONS.ARC", href: "#events" },
+    { name: "OPERATIVES.LST", href: "#team" },
+    { name: "SECURE.CON", href: "#contact" },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass shadow-lg" : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <a href="#home" className="flex items-center space-x-2">
-            <div className="w-10 h-10 rounded-lg overflow-hidden">
-              <img src={enigmaLogo} alt="ENIGMA Logo" className="w-full h-full object-cover" />
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${isScrolled ? "bg-background/95 border-white/10 backdrop-blur-md h-16" : "bg-transparent border-transparent h-24"
+          }`}
+      >
+        <div className="container mx-auto px-6 h-full">
+          <div className="flex items-center justify-between h-full">
+            {/* Logo Section */}
+            <div className="flex items-center space-x-4 group cursor-pointer" onClick={() => setIsLogoOpen(true)}>
+              <div className="w-12 h-12 flex items-center justify-center transition-transform group-hover:scale-110">
+                <img src={enigmaLogo} alt="ENIGMA Logo" className="w-full h-full object-contain" />
+              </div>
+              <div className="flex flex-col leading-none">
+                <span className="text-2xl font-black font-poppins tracking-tighter text-white">ENIGMA</span>
+                <span className="text-[8px] font-code text-primary tracking-[0.2em] uppercase">Sector.Alpha</span>
+              </div>
             </div>
-            <span className="text-xl font-bold font-outfit gradient-text">ENIGMA</span>
-          </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="text-foreground/80 hover:text-foreground animated-underline transition-colors"
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-12">
+              <div className="flex items-center space-x-8">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="group relative font-code text-[11px] font-bold text-white/60 hover:text-primary transition-colors tracking-widest uppercase"
+                  >
+                    {link.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="flex items-center gap-4 md:hidden">
+              <button
+                className="w-10 h-10 flex items-center justify-center bg-primary text-black"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                {link.name}
-              </a>
-            ))}
-            
-            {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="hover:bg-primary/10"
-            >
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </div>
-
-          {/* Mobile Menu Button & Theme Toggle */}
-          <div className="flex items-center gap-2 md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="hover:bg-primary/10"
-            >
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X /> : <Menu />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden pb-4 animate-fade-in-up">
-            <div className="flex flex-col space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-foreground/80 hover:text-foreground transition-colors px-4 py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              </button>
             </div>
           </div>
+
+          {/* Mobile Menu - Radical Overlay */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden fixed inset-0 top-[64px] bg-background z-50 p-6 animate-fade-in-up">
+              <div className="flex flex-col space-y-8">
+                <div className="flex items-center gap-4 opacity-20">
+                  <div className="h-[1px] w-12 bg-primary" />
+                  <span className="font-code text-xs tracking-widest">Protocol.Menu</span>
+                </div>
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-4xl font-black font-poppins tracking-tighter text-white hover:text-primary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+
+              <div className="absolute bottom-12 left-6 opacity-10">
+                <span className="text-[10rem] font-black pointer-events-none select-none">ENIGMA</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+
+      {/* Logo Popup Modal */}
+      <AnimatePresence>
+        {isLogoOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-xl p-4 cursor-pointer"
+            onClick={() => setIsLogoOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.5, rotateY: -360, opacity: 0 }}
+              animate={{
+                scale: 1.5,
+                rotateY: 0,
+                opacity: 1
+              }}
+              transition={{
+                duration: 1,
+                ease: "easeOut"
+              }}
+              className="relative w-64 h-64 md:w-80 md:h-80"
+            >
+              <img
+                src={enigmaLogo}
+                alt="ENIGMA Logo Large"
+                className="w-full h-full object-contain filter drop-shadow-[0_0_30px_#D5FF4044]"
+              />
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-primary font-code text-[10px] tracking-[.5em] uppercase whitespace-nowrap opacity-50">
+                Operational_Asset // System_Alpha
+              </div>
+            </motion.div>
+            <button
+              className="absolute top-12 right-12 text-white/50 hover:text-primary transition-colors"
+              onClick={() => setIsLogoOpen(false)}
+            >
+              <X size={32} />
+            </button>
+          </motion.div>
         )}
-      </div>
-    </nav>
+      </AnimatePresence>
+    </>
   );
 };
 

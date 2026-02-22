@@ -6,81 +6,92 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email Us",
+      title: "UPLINK.EMAIL",
       value: "enigmaclub5@gmail.com",
-      href: "mailto:info@enigmaclub.edu",
+      href: "mailto:enigmaclub5@gmail.com",
     },
     {
       icon: Phone,
-      title: "Call Us",
+      title: "COMMS.DIRECT",
       value: "+91 96967 24664",
       href: "tel:+919696724664",
     },
     {
       icon: MapPin,
-      title: "Visit Us",
-      value: "JAIN (Deemed-to-be-University), Faculty of Engineering and Technology (FET)",
-      href: "#",
+      title: "BASE.LOC",
+      value: "JCVR+27P, Karnataka 562112",
+      href: "https://www.google.com/maps/search/?api=1&query=12.638143296188357,77.44063386876661",
     },
   ];
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden text-white" style={{ backgroundColor: '#0c142c' }}>
-      {/* Background Glows (adjusting to dark theme) */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-background via-card/30 to-background" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-20" />
-
+    <section id="contact" className="py-24 relative overflow-hidden bg-background">
       <div className="container mx-auto px-4 relative z-10">
-        {/* Reverted max-width to allow space for three cards */}
-        <div className="max-w-5xl mx-auto">
-          {/* Header Section (Adjusted colors for dark background) */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold font-outfit mb-4 text-white">
-              Get In <span className="gradient-text">Touch</span>
+
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-6xl md:text-8xl font-black font-poppins tracking-tighter leading-none mb-6">
+              SECURE <br />
+              <span className="text-primary italic">UPLINK.</span>
             </h2>
-            <p className="text-xl text-white/80">
-              Have questions? We'd love to hear from you
+            <p className="text-muted-foreground text-xl max-w-md border-l-2 border-primary pl-6 font-code text-sm uppercase">
+              Establish a direct connection for technical inquiries or collaboration requests.
             </p>
           </div>
-
-          {/* Contact Info Grid - Styled to match the light-bordered, dark-background cards from the image */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {contactInfo.map((info, index) => {
-              const IconComponent = info.icon;
-              return (
-                <a
-                  key={index}
-                  href={info.href}
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  // Styling to match the dark card with rounded corners and subtle border/glow
-                  className="flex flex-col items-center text-center p-8 rounded-xl bg-blue-900/40 border border-white/10 backdrop-blur-sm transition-transform hover:scale-[1.03] cursor-pointer"
-                  style={{ 
-                    animationDelay: `${index * 0.1}s`,
-                    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.01)' // Subtle, darker shadow
-                  }}
-                >
-                  {/* Icon Wrapper: Solid rounded square with bright cyan gradient and glow */}
-                  <div 
-                    className={`inline-flex p-4 rounded-xl mb-6 text-white`} 
-                    style={{
-                      background: 'linear-gradient(to right, #00c6ff, #0072ff)', // Bright Cyan/Blue Gradient
-                      boxShadow: '0 0 15px rgba(0, 198, 255, 0.6)', // Cyan Glow Effect
-                    }}
-                  >
-                    <IconComponent className={`w-6 h-6`} /> 
-                  </div>
-
-                  <h3 className="text-xl font-semibold mb-2 text-white">
-                    {info.title}
-                  </h3>
-                  <p className="text-white/70">{info.value}</p>
-                </a>
-              );
-            })}
+          <div className="text-right hidden md:block">
+            <span className="text-sm font-code text-primary opacity-50 uppercase tracking-widest">[ Protocol.Contact_v2.0 ]</span>
           </div>
-          
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 border border-white/10 max-w-6xl mx-auto">
+          {contactInfo.map((info, index) => {
+            const IconComponent = info.icon;
+            return (
+              <a
+                key={index}
+                href={info.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-12 bg-background hover:bg-primary/5 transition-all relative overflow-hidden"
+              >
+                {/* Visual Label Decor */}
+                <div className="absolute top-4 right-4 text-[10px] font-code text-white/10 uppercase tracking-widest">
+                  Secure_Channel_0{index + 1}
+                </div>
+
+                <div className="mb-8 w-12 h-12 bg-primary flex items-center justify-center text-black">
+                  <IconComponent className="w-6 h-6" />
+                </div>
+
+                <h3 className="text-2xl font-black mb-4 font-poppins tracking-tight uppercase group-hover:text-primary transition-colors">
+                  {info.title}
+                </h3>
+
+                <p className="text-muted-foreground font-code text-sm leading-relaxed border-t border-white/5 pt-4">
+                  {info.value}
+                </p>
+
+                {/* Arrow Decor */}
+                <div className="mt-8 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-[10px] font-black tracking-widest uppercase">Connect</span>
+                  <div className="h-[1px] w-8 bg-primary"></div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Technical Footer Metadata */}
+        <div className="mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between gap-8 opacity-20 hover:opacity-100 transition-opacity">
+          <div className="font-code text-[10px] tracking-widest uppercase">
+            ENIGMA_SECURITY_PROTOCOL: ENCRYPTED
+          </div>
+          <div className="font-code text-[10px] tracking-widest uppercase">
+            ESTABLISHED: 2025 // UPDATED: 2026
+          </div>
+        </div>
+
       </div>
     </section>
   );
