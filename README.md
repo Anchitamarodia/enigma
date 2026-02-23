@@ -1,73 +1,63 @@
-# Welcome to your Lovable project
+# ENIGMA.SYS // TECHNICAL REBELLION
 
-## Project info
+![Enigma Matrix Banner](https://img.shields.io/badge/STATUS-ACTIVE-D5FF40?style=for-the-badge&logo=terminator&logoColor=black&labelColor=black)
+![Tech Stack](https://img.shields.io/badge/STACK-REACT_|_TAILWIND_|_TS_|_VITE-black?style=for-the-badge&color=D5FF40)
 
-**URL**: https://lovable.dev/projects/7c96f8ee-7206-4d3f-afe5-6c189845e072
+> "CREATING A COMMUNITY WHERE INNOVATION FLOURISHES."
 
-## How can I edit this code?
+**ENIGMA** is the official Technology and Innovation club of JAIN University, FET. This repository houses the core digital infrastructure—a high-intensity, "Acid Brutalism" landing interface designed to recruit, inform, and ignite technical rebellion on campus.
 
-There are several ways of editing your application.
+## // ARCHITECTURE.LOG
 
-**Use Lovable**
+The interface is built on a modern, high-performance stack optimized for instant deployment and visual impact.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/7c96f8ee-7206-4d3f-afe5-6c189845e072) and start prompting.
+- **Core**: React 18 + TypeScript + Vite
+- **Styling**: Tailwind CSS v3 (Custom Brutalist Theme)
+- **Components**: Radix UI + Custom `framer-motion` Physics
+- **Icons**: Lucide React
+- **Routing**: React Router DOM
 
-Changes made via Lovable will be committed automatically to this repo.
+## // VISUAL.IDENTITY
 
-**Use your preferred IDE**
+The design language is strictly **Acid Brutalism**:
+- `BORDER_RADIUS: 0px;` - No soft edges. Complete structural rigidity.
+- `COLOR_PALETTE:`
+  - PRIMARY (Acid Green): `#D5FF40`
+  - BACKGROUND (Deep Void): `#0A0A0A`
+  - ACCENT (High Contrast): `#FFFFFF`
+- `TYPOGRAPHY:`
+  - Headers: **Poppins** (Massive, Black, Tighter tracking)
+  - Code/Metadata: **JetBrains Mono** / **Courier New** (Technical, precise)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## // LOCAL_DEPLOYMENT.EXE
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+To run the ENIGMA interface locally:
 
-Follow these steps:
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd enigma
+   ```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+3. **Initialize development server:**
+   ```bash
+   npm run dev
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+4. **Access UI:**
+   Navigate to `http://localhost:8080`
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## // MISSION_STATUS
 
-**Edit a file directly in GitHub**
+This project is actively maintained by the ENIGMA core team. It serves as both our public face and a playground for experimental web development.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+> **LAT**: 12.6381° N | **LONG**: 77.4406° E 
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/7c96f8ee-7206-4d3f-afe5-6c189845e072) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+*Initiate Vision. Unravel the Unknown.*

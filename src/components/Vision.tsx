@@ -3,68 +3,65 @@ import { Target, Rocket, Heart } from "lucide-react";
 
 const Vision = () => {
   return (
-    <section id="vision" className="py-24 relative overflow-hidden">
-      {/* Animated Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 animate-pulse-glow" />
+    <section id="vision" className="py-24 relative overflow-hidden bg-background">
+      {/* Brutalist Grid Background */}
+      <div className="absolute inset-0 border-y border-white/5 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="text-4xl md:text-5xl font-bold font-outfit mb-8">
-            Our <span className="gradient-text">Vision</span>
-          </h2>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-12 gap-16 items-center">
 
-          <div className="glass p-12 rounded-3xl space-y-6">
-            <div className="flex justify-center gap-4 mb-8">
-              <div className="p-4 bg-primary/20 rounded-full">
-                <Target className="w-8 h-8 text-primary" />
+            {/* Left Content - Massive Quote */}
+            <div className="md:col-span-8 space-y-12">
+              <div className="flex items-center gap-4">
+                <div className="h-[1px] w-12 bg-primary"></div>
+                <span className="text-primary font-code tracking-[0.3em] uppercase text-xs">Sector.Vision</span>
               </div>
-              <div className="p-4 bg-secondary/20 rounded-full">
-                <Rocket className="w-8 h-8 text-secondary" />
-              </div>
-              <div className="p-4 bg-accent/20 rounded-full">
-                <Heart className="w-8 h-8 text-accent" />
-              </div>
+
+              <blockquote className="text-5xl md:text-7xl font-black font-poppins tracking-tighter leading-[0.9] uppercase italic text-white">
+                "CREATING A <span className="text-primary">COMMUNITY</span> WHERE <span className="underline decoration-primary/50 underline-offset-8">INNOVATION</span> FLOURISHES."
+              </blockquote>
+
+              <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl border-l-2 border-primary pl-8 font-code text-sm uppercase opacity-60">
+                We envision ENIGMA as the cornerstone of technical rebellion on campus. A place where builders, hackers, and designers collide to forge the next phase of the digital frontier.
+              </p>
             </div>
 
-            <blockquote className="text-2xl md:text-3xl font-semibold leading-relaxed">
-              "To create a community where innovation flourishes, collaboration thrives, and every student has the opportunity to explore the limitless possibilities of technology."
-            </blockquote>
+            {/* Right Content - Technical Specs */}
+            <div className="md:col-span-4 space-y-2">
+              {[
+                {
+                  title: "INNOVATION_FIRST",
+                  description: "Embracing new ideas and pushing boundaries",
+                  status: "ACTIVE",
+                },
+                {
+                  title: "CORE_COMMUNITY",
+                  description: "Inclusive network of technical rebels",
+                  status: "ONLINE",
+                },
+                {
+                  title: "VERTICAL_GROWTH",
+                  description: "Constant evolution and technical mastery",
+                  status: "SYNCING",
+                },
+              ].map((value, index) => (
+                <div
+                  key={index}
+                  className="border border-white/10 p-6 hover:bg-white/5 transition-colors group hover:animate-jitter"
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <span className="text-[10px] font-code text-primary opacity-50">VALUE.ID: 0{index + 1}</span>
+                    <span className="text-[8px] font-code text-primary bg-primary/10 px-2 py-0.5 rounded-sm">{value.status}</span>
+                  </div>
+                  <h3 className="text-xl font-black mb-2 font-poppins tracking-tight uppercase group-hover:text-primary transition-colors">{value.title}</h3>
+                  <p className="text-muted-foreground font-code text-xs leading-relaxed">{value.description}</p>
+                </div>
+              ))}
 
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              We envision ENIGMA as the cornerstone of technological advancement in our campus, where students from all backgrounds come together to learn, create, and inspire the next generation of innovators.
-            </p>
+
+            </div>
           </div>
-
-          {/* Core Values */}
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
-            {[
-              {
-                title: "Innovation First",
-                description: "Embracing new ideas and pushing boundaries",
-              },
-              {
-                title: "Inclusive Community",
-                description: "Welcoming students from all disciplines",
-              },
-              {
-                title: "Continuous Growth",
-                description: "Learning and evolving together",
-              },
-            ].map((value, index) => (
-              <div
-                key={index}
-                className="glass p-6 rounded-2xl hover-lift"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <h3 className="text-xl font-bold mb-2 gradient-text">{value.title}</h3>
-                <p className="text-muted-foreground">{value.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <Button variant="glow" size="xl" className="mt-8">
-            Join Our Vision
-          </Button>
         </div>
       </div>
     </section>
