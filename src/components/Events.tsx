@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, Users, ChevronLeft, ChevronRight, ExternalLink, Clock, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+
 const Events = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -101,7 +102,7 @@ const Events = () => {
             </div>
           </div>
 
-          {/* Innovation Duel Carousel - Refactored */}
+          {/* Innovation Duel Carousel */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <div className="md:col-span-5 order-2 md:order-1">
               <span className="text-primary font-code text-sm mb-4 block underline decoration-primary/30 underline-offset-4">Event.Archive_01</span>
@@ -131,11 +132,19 @@ const Events = () => {
                 alt={innovationDuel.title}
                 className="w-full h-[500px] object-cover border border-white/10"
               />
+              
+              {/* NAVIGATION ARROWS - UPDATED WITH BLINKING FOR MOBILE */}
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-between px-4">
-                <button onClick={prevImage} className="p-4 bg-primary text-black hover:bg-white transition-colors">
+                <button 
+                  onClick={prevImage} 
+                  className="p-4 bg-primary text-black hover:bg-white transition-colors animate-pulse md:animate-none"
+                >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
-                <button onClick={nextImage} className="p-4 bg-primary text-black hover:bg-white transition-colors">
+                <button 
+                  onClick={nextImage} 
+                  className="p-4 bg-primary text-black hover:bg-white transition-colors animate-pulse md:animate-none"
+                >
                   <ChevronRight className="w-6 h-6" />
                 </button>
               </div>
@@ -148,7 +157,6 @@ const Events = () => {
           <div className="max-w-4xl mx-auto">
             <div className="relative p-1 bg-gradient-to-r from-primary via-primary/50 to-transparent">
               <div className="bg-background p-12 md:p-20 relative overflow-hidden group">
-                {/* Background Text Decor */}
                 <div className="absolute -bottom-10 -right-10 text-[12rem] font-black text-white/5 pointer-events-none select-none">
                   2026
                 </div>
@@ -175,7 +183,6 @@ const Events = () => {
                   </button>
                 </div>
 
-                {/* Decorative Elements */}
                 <div className="absolute top-0 right-0 w-32 h-32 border-t-2 border-r-2 border-primary/20" />
                 <div className="absolute bottom-0 left-0 w-32 h-32 border-b-2 border-l-2 border-primary/20" />
               </div>
@@ -185,7 +192,6 @@ const Events = () => {
 
       </div>
 
-      {/* Request Notification Popup Modal */}
       <AnimatePresence>
         {isPopupOpen && (
           <motion.div
@@ -203,7 +209,6 @@ const Events = () => {
               className="bg-background border px-8 py-16 md:px-16 md:py-20 max-w-3xl w-full relative shadow-[16px_16px_0px_0px_#D5FF40]"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Brutalist accents */}
               <div className="absolute top-0 right-0 w-16 h-16 border-b-2 border-l-2 border-primary/20 pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-16 h-16 border-t-2 border-r-2 border-primary/20 pointer-events-none" />
               <div className="absolute top-4 left-4 text-[10px] font-code text-primary opacity-50 tracking-[0.2em]">SYS.REQ_001</div>

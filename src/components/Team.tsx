@@ -150,11 +150,11 @@ const Team = () => {
 
               <div className="relative mb-8">
                 <div className="w-full aspect-[4/5] bg-white/5 overflow-hidden border border-white/10 group-hover:border-primary transition-colors">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
-                  />
+                 <img
+  src={member.image}
+  alt={member.name}
+  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
+/>
                 </div>
 
                 {/* Social Overlay */}
