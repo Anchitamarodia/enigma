@@ -62,16 +62,16 @@ const NotesLibrary = () => {
   const[passcodeError, setPasscodeError] = useState("");
   const [adminTab, setAdminTab] = useState<"ADD" | "MANAGE">("ADD");
 
-  // --- New Note Form State ---
-  const[newNote, setNewNote] = useState<Partial<Subject>>({
-    name: "",
-    code: "",
-    year: 1,
-    semester: 1,
-    branch: "CSE",
-    description: "",
-    pdfUrl: "" // Changed to a string URL for persistence
-  });
+// --- New Note Form State ---
+const [newNote, setNewNote] = useState<Partial<Subject>>({
+  name: "",
+  code: "",
+  year: 1,
+  semester: 1,
+  branch: "CSE",
+  description: "",
+  pdfUrl: "" // Now holds a URL string
+});
 
   // Upload helper state: direct PDF upload (stored as data URL)
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -161,38 +161,37 @@ const NotesLibrary = () => {
       setPasscodeError("ACCESS DENIED: INVALID CREDENTIALS");
     }
   };
-
-  const handleAddNote = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newNote.name || !newNote.code || !newNote.pdfUrl) return;
-
-    const newId = `custom-${Date.now()}`;
-    const addedNote: Subject = {
-      id: newId,
-      name: newNote.name,
-      code: newNote.code,
-      year: (newNote.year || 1) as Year,
-      semester: (newNote.semester || 1) as Semester,
-      branch: newNote.branch || "CSE",
-      description: newNote.description,
-      pdfUrl: newNote.pdfUrl,
-    };
-
-    setLocalSubjects((prev) => [addedNote, ...prev]);
-    // Clear form and uploaded file input
-    setNewNote({
-      name: "",
-      code: "",
-      year: 1,
-      semester: 1,
-      branch: "CSE",
-      description: "",
-      pdfUrl: ""
-    });
-    setUploadName("");
-    if (fileInputRef.current) fileInputRef.current.value = "";
-    alert("SYSTEM UPDATED: Document uploaded successfully.");
+const handleAddNote = (e: React.FormEvent) => {
+  e.preventDefault();
+  if (!newNote.name || !newNote.code || !newNote.pdfUrl) return;
+  
+  const newId = `custom-${Date.now()}`;
+  const addedNote: Subject = {
+    id: newId,
+    name: newNote.name,
+    code: newNote.code,
+    year: (newNote.year || 1) as Year,
+    semester: (newNote.semester || 1) as Semester,
+    branch: newNote.branch || "CSE",
+    description: newNote.description,
+    pdfUrl: newNote.pdfUrl, // Storing the link directly
   };
+  
+  setLocalSubjects((prev) => [addedNote, ...prev]);
+  
+  // Clear form
+  setNewNote({
+    name: "",
+    code: "",
+    year: 1,
+    semester: 1,
+    branch: "CSE",
+    description: "",
+    pdfUrl: ""
+  });
+  
+  alert("SYSTEM UPDATED: Link added successfully.");
+};
 
   const handleDeleteNote = (id: string) => {
     if (confirm("WARNING: Are you sure you want to delete this file from the database?")) {
@@ -210,46 +209,18 @@ const NotesLibrary = () => {
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
   };
+// Open or download a PDF
+const handleOpenOrDownload = (e: React.MouseEvent, pdfUrl?: string) => {
+  e.preventDefault();
+  if (!pdfUrl) return;
 
-  // Open or download a PDF (works for data URLs stored in localStorage)
-  const handleOpenOrDownload = (e: React.MouseEvent, pdfUrl?: string, filename?: string) => {
-    e.preventDefault();
-    if (!pdfUrl) return;
-
-    try {
-      if (pdfUrl.startsWith('data:')) {
-        // Convert data URL to blob then create object URL so browser treats it like a file
-        const parts = pdfUrl.split(',');
-        const meta = parts[0];
-        const base64 = parts[1];
-        const mimeMatch = meta.match(/data:([a-zA-Z0-9/+.-]+);base64/);
-        const mime = mimeMatch ? mimeMatch[1] : 'application/pdf';
-        const byteChars = atob(base64);
-        const byteNumbers = new Array(byteChars.length);
-        for (let i = 0; i < byteChars.length; i++) {
-          byteNumbers[i] = byteChars.charCodeAt(i);
-        }
-        const byteArray = new Uint8Array(byteNumbers);
-        const blob = new Blob([byteArray], { type: mime });
-        const url = URL.createObjectURL(blob);
-        const newWin = window.open(url, '_blank');
-        if (!newWin) {
-          // fallback: navigate current tab
-          window.location.href = url;
-        }
-        // Allow time for browser to load, then revoke
-        setTimeout(() => URL.revokeObjectURL(url), 60000);
-      } else {
-        // External URLs: open in new tab
-        const newWin = window.open(pdfUrl, '_blank', 'noopener');
-        if (!newWin) window.location.href = pdfUrl;
-      }
-    } catch (err) {
-      // As a fallback, just open the URL
-      const newWin = window.open(pdfUrl, '_blank');
-      if (!newWin) window.location.href = pdfUrl;
-    }
-  };
+  // Change this:
+  // window.open(pdfUrl, '_blank', 'noopener,noreferrer');
+  
+  // To this (pass features as a string if you really need them, 
+  // but most modern browsers handle '_blank' safely by default):
+  window.open(pdfUrl, '_blank');
+};
 
   return (
     <div className="min-h-screen bg-background">
@@ -422,7 +393,7 @@ const NotesLibrary = () => {
                     </div>
                     <a
                       href={subject.pdfUrl}
-                      onClick={(e) => handleOpenOrDownload(e, subject.pdfUrl, `${subject.code || subject.name}.pdf`)}
+                      onClick={(e) => handleOpenOrDownload(e, subject.pdfUrl)}
                       rel="noopener noreferrer"
                       className="mt-6 flex items-center justify-center gap-2 w-full bg-white/5 border border-white/10 text-white font-code text-[10px] font-bold tracking-widest uppercase px-4 py-3 hover:bg-primary hover:text-black hover:border-primary transition-all group/btn"
                     >
@@ -632,41 +603,18 @@ const NotesLibrary = () => {
                       
                       {/* --- REPLACED FILE UPLOAD WITH LINK INPUT FOR PERSISTENCE --- */}
                       <div className="space-y-2">
-                        <label className="font-code text-[10px] text-primary uppercase tracking-widest">PDF (Upload)</label>
-
-                        <div className="flex items-center gap-3">
-                          <input
-                            ref={fileInputRef}
-                            type="file"
-                            accept="application/pdf"
-                            required
-                            onChange={(e) => {
-                              const f = e.target.files?.[0];
-                              handleFileSelect(f);
-                            }}
-                            className="text-sm text-white/60"
-                          />
-                          <div className="flex-1">
-                            {uploadName ? (
-                              <div className="flex items-center justify-between gap-2">
-                                <div className="font-code text-[12px] text-white/70 truncate">{uploadName}</div>
-                                <button
-                                  type="button"
-                                  onClick={() => {
-                                    if (fileInputRef.current) fileInputRef.current.value = "";
-                                    handleFileSelect();
-                                  }}
-                                  className="text-xs font-code uppercase tracking-widest text-primary"
-                                >
-                                  Clear
-                                </button>
-                              </div>
-                            ) : (
-                              <div className="font-code text-[10px] text-white/40">No file selected</div>
-                            )}
-                          </div>
-                        </div>
-                      </div>
+  <label className="font-code text-[10px] text-primary uppercase tracking-widest">
+    PDF Link (Google Drive / URL)
+  </label>
+  <input
+    type="url"
+    required
+    value={newNote.pdfUrl}
+    onChange={(e) => setNewNote({ ...newNote, pdfUrl: e.target.value })}
+    className="w-full bg-white/5 border border-white/10 text-white font-code text-xs px-4 py-3 focus:outline-none focus:border-primary"
+    placeholder="https://drive.google.com/file/..."
+  />
+</div>
                     </div>
                     <div className="space-y-2">
                       <label className="font-code text-[10px] text-primary uppercase tracking-widest">Description (Optional)</label>
