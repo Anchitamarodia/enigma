@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 /* ENIGMA Design System - Acid Brutalism Theme */
-
 @layer base {
   :root {
     /* Acid Brutalism Palette */

@@ -50,19 +50,83 @@ const Events = () => {
     <section id="events" className="py-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
 
-        {/* Header */}
+        {/* ================= UPCOMING SECTION ================= */}
+        <div className="mb-48">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-6xl md:text-8xl font-black font-poppins tracking-tighter leading-none mb-6 text-white uppercase flex flex-col">
+                UPCOMING <br />
+                <span className="text-primary italic">DEPLOYMENT.</span>
+              </h2>
+              <p className="text-muted-foreground text-xl max-w-md border-l-2 border-primary pl-6">
+                New frontiers waiting to be explored.
+              </p>
+            </div>
+            <div className="text-right hidden md:block">
+              <span className="text-sm font-code text-primary opacity-50 uppercase tracking-widest">[ Active v2.07 ]</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center bg-primary/5 p-8 md:p-12 border border-primary/20 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-4 bg-primary text-black font-bold text-xs uppercase tracking-tighter z-10 animate-pulse">
+              Mission Incoming
+            </div>
+            
+            <div className="md:col-span-7 relative group">
+              <div className="absolute -inset-1 bg-primary/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
+              <img
+                src="\src\assets\BlindDate.jpeg"
+                alt="THE BLINDDATE"
+                className="w-full transition-all duration-500 object-cover h-[500px] border border-primary/20 group-hover:border-primary/50"
+              />
+              <div className="absolute top-0 right-0 p-4 bg-primary text-black font-bold text-xs uppercase tracking-tighter">
+                SIGHTINGS CONFIRMED
+              </div>
+            </div>
+
+            <div className="md:col-span-5">
+              <span className="text-primary font-code text-sm mb-4 block underline decoration-primary/30 underline-offset-4">Event.Incoming_01</span>
+              <h3 className="text-4xl md:text-5xl font-bold mb-6 font-poppins leading-tight">
+                THE BLINDDATE
+              </h3>
+              <p className="text-muted-foreground mb-8 text-lg border-b border-white/10 pb-8 italic">
+                "Who is gonna be your tech partner?"
+              </p>
+              <div className="flex flex-col gap-6">
+                <div className="flex items-center gap-4">
+                  <Calendar className="w-5 h-5 text-primary" />
+                  <span className="font-bold font-code text-sm tracking-widest uppercase">March 17, 2026</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  <span className="font-bold font-code text-sm tracking-widest uppercase">002 Seminar Hall</span>
+                </div>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdj_OQQb5HFQEwzP9FdsrfMKCSINzQp8JlQ5b8EOG_JQciMHg/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center justify-center bg-primary hover:bg-white text-black font-black uppercase tracking-widest px-8 py-4 text-sm transition-all duration-200 hover:shadow-[4px_4px_0px_0px_#D5FF40] hover:-translate-y-1 hover:-translate-x-1 active:shadow-none active:translate-y-0 active:translate-x-0 cursor-pointer border-none ring-0 outline-none w-fit no-underline"
+                >
+                  Join Mission
+                </a>
+              </div>
+            </div>
+          </div>
+        
+
+        {/* Header (Past Missions) */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div className="max-w-2xl">
             <h2 className="text-6xl md:text-8xl font-black font-poppins tracking-tighter leading-none mb-6">
               PAST <br />
-              <span className="text-primary italic">MISSIONS.</span>
+              <span className="text-secondary-foreground/40 italic">MISSIONS.</span>
             </h2>
-            <p className="text-muted-foreground text-xl max-w-md border-l-2 border-primary pl-6">
-              Chronicles of technical rebellion and successful deployments.
+            <p className="text-muted-foreground/60 text-xl max-w-md border-l-2 border-primary/20 pl-6">
+              Archive of completed operations and technical deployments.
             </p>
           </div>
           <div className="text-right hidden md:block">
-            <span className="text-sm font-code text-primary opacity-50 uppercase tracking-widest">[ Archive v2.06 ]</span>
+            <span className="text-sm font-code text-primary opacity-30 uppercase tracking-widest">[ Archive v2.06 ]</span>
           </div>
         </div>
 
@@ -152,43 +216,39 @@ const Events = () => {
           </div>
         </div>
 
-        {/* ================= UPCOMING SECTION ================= */}
-        <div className="mt-48">
+        {/* ================= STAY TUNED SECTION ================= */}
+        <div className="mt-48 text-center opacity-50">
           <div className="max-w-4xl mx-auto">
-            <div className="relative p-1 bg-gradient-to-r from-primary via-primary/50 to-transparent">
+            <div className="relative p-1 bg-gradient-to-r from-primary/20 via-primary/5 to-transparent">
               <div className="bg-background p-12 md:p-20 relative overflow-hidden group">
-                <div className="absolute -bottom-10 -right-10 text-[12rem] font-black text-white/5 pointer-events-none select-none">
-                  2026
-                </div>
-
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-8">
-                    <span className="w-12 h-[2px] bg-primary"></span>
-                    <span className="text-primary font-code tracking-[0.3em] uppercase text-sm">Deployment Pending</span>
+                <div className="relative z-10 text-center">
+                  <div className="flex items-center justify-center gap-4 mb-8">
+                    <span className="w-12 h-[1px] bg-primary/30"></span>
+                    <span className="text-primary/50 font-code tracking-[0.3em] uppercase text-xs">More Missions Encrypting</span>
+                    <span className="w-12 h-[1px] bg-primary/30"></span>
                   </div>
 
-                  <h2 className="text-5xl md:text-7xl font-black mb-8 font-poppins tracking-tighter">
-                    STAY <span className="text-primary italic">TUNED.</span>
+                  <h2 className="text-4xl md:text-5xl font-black mb-8 font-poppins tracking-tighter opacity-80">
+                    STAY <span className="text-primary/60 italic font-medium">TUNED.</span>
                   </h2>
 
-                  <p className="text-xl text-muted-foreground mb-12 max-w-xl leading-relaxed">
-                    We are currently encrypting the next set of missions. The next phase of innovation launches soon.
+                  <p className="text-lg text-muted-foreground/60 mb-12 max-w-xl mx-auto leading-relaxed">
+                    The next phase of innovation launches soon. Join our community to be the first to know.
                   </p>
 
                   <button
                     onClick={() => setIsPopupOpen(true)}
-                    className="inline-flex items-center justify-center bg-primary hover:bg-white text-black font-black uppercase tracking-widest px-10 py-8 text-lg transition-all duration-200 hover:shadow-[8px_8px_0px_0px_#D5FF40] hover:-translate-y-1 hover:-translate-x-1 active:shadow-none active:translate-y-0 active:translate-x-0 cursor-pointer border-none ring-0 outline-none"
+                    className="inline-flex items-center justify-center border border-primary/30 hover:border-primary hover:bg-primary/5 text-primary/70 hover:text-primary font-bold uppercase tracking-widest px-8 py-4 text-xs transition-all duration-200 cursor-pointer"
                   >
                     Request Notification
                   </button>
                 </div>
-
-                <div className="absolute top-0 right-0 w-32 h-32 border-t-2 border-r-2 border-primary/20" />
-                <div className="absolute bottom-0 left-0 w-32 h-32 border-b-2 border-l-2 border-primary/20" />
               </div>
             </div>
           </div>
         </div>
+
+      </div>
 
       </div>
 
