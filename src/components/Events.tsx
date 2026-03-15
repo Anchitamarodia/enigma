@@ -75,7 +75,7 @@ const Events = () => {
             <div className="md:col-span-7 relative group">
               <div className="absolute -inset-1 bg-primary/20 blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
               <img
-                src="\src\assets\BlindDate.jpeg"
+                src="/events/BlindDate.jpeg"
                 alt="THE BLINDDATE"
                 className="w-full transition-all duration-500 object-cover h-[500px] border border-primary/20 group-hover:border-primary/50"
               />
