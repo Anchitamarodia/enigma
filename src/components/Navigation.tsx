@@ -76,32 +76,21 @@ const Navigation = () => {
                 <span className="text-2xl font-black font-poppins tracking-tighter text-white">ENIGMA</span>
                 <span className="text-[8px] font-code text-primary tracking-[0.2em] uppercase">Sector.Alpha</span>
               </div>
-            </div>
+     z       </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-12">
-              <div className="flex items-center space-x-8">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className="group relative font-code text-[11px] font-bold text-white/60 hover:text-primary transition-colors tracking-widest uppercase"
-                  >
-                    {link.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full" />
-                  </a>
-                ))}
-                <Link
-                  to="/notes"
-                  className="group relative font-code text-[11px] font-bold text-primary hover:text-white transition-colors tracking-widest uppercase"
-                >
-                  NOTES.LIB
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full" />
-                </Link>
-              </div>
-            </div>
-
+        {/* Desktop Navigation */}
+<div className="hidden md:flex items-center space-x-12">
+  <div className="flex items-center space-x-8">
+    {navLinks.map((link) => (
+      <a key={link.name} href={link.href} onClick={(e) => handleNavClick(e, link.href)} className="...">
+        {link.name}
+        <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all group-hover:w-full" />
+      </a>
+    ))}
+    
+    {/* NOTES.LIB REMOVED */}
+  </div>
+</div>
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-4 md:hidden">
               <button
@@ -131,13 +120,7 @@ const Navigation = () => {
                     {link.name}
                   </a>
                 ))}
-                <Link
-                  to="/notes"
-                  className="text-4xl font-black font-poppins tracking-tighter text-primary hover:text-white transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  NOTES.LIB
-                </Link>
+             
               </div>
 
               <div className="absolute bottom-12 left-6 opacity-10">
